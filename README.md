@@ -159,7 +159,7 @@ server/
 
 ## Technologies Used
 
-- Frontend: React, Socket.IO Client, Chart.js
-- Backend: Node.js, Express, Socket.IO
+- Frontend: React.
+- Backend: Node.js, Express, Socket.IO , JWT Authentication
 - Database: Mongodb
 - Styling: Tailwind CSS
