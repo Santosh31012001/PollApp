@@ -161,4 +161,5 @@ server/
 
 - Frontend: React, Socket.IO Client, Chart.js
 - Backend: Node.js, Express, Socket.IO
+- Database: Mongodb
 - Styling: Tailwind CSS
