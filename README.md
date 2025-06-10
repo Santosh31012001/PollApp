@@ -143,7 +143,7 @@ server/
 
 - Frontend runs on port 3000
 - Backend runs on port 5000
-- The frontend is configured to proxy API requests to the backend
+- The frontend is configured to REST API requests to the backend
 
 ## Usage
 
