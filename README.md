@@ -10,12 +10,7 @@ A real-time polling application with separate frontend and backend.
 - Live results visualization using bar charts
 - Participant count tracking
 - Responsive design with Tailwind CSS
-
-## Prerequisites
-
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-
+- 
 ## Project Structure
 
 - `client/` - React frontend application
@@ -57,8 +52,7 @@ A real-time polling application with separate frontend and backend.
 
 - Frontend runs on port 3000
 - Backend runs on port 5000
-- The frontend is configured to proxy API requests to the backend
-
+  
 ## Usage
 
 1. Open http://localhost:3000 in your browser
@@ -76,7 +70,3 @@ A real-time polling application with separate frontend and backend.
 - Frontend: React, Socket.IO Client, Chart.js
 - Backend: Node.js, Express, Socket.IO
 - Styling: Tailwind CSS
-
-## License
-
-MIT 
