@@ -10,13 +10,104 @@ A real-time polling application with separate frontend and backend.
 - Live results visualization using bar charts
 - Participant count tracking
 - Responsive design with Tailwind CSS
-- 
+
+## Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
 ## Project Structure
 
 - `client/` - React frontend application
 - `server/` - Node.js backend server
 
-## Running the Application
+## Architecture
+
+### System Overview
+The application follows a client-server architecture with real-time bidirectional communication:
+
+```
+┌─────────────┐     WebSocket     ┌─────────────┐
+│   Client    │◄─────────────────►│   Server    │
+│  (React)    │     Socket.IO     │  (Node.js)  │
+└─────────────┘                   └─────────────┘
+```
+
+### Component Architecture
+```
+client/
+├── src/
+│   ├── components/     # React components
+│   ├── hooks/         # Custom React hooks
+│   ├── context/       # React context providers
+│   ├── services/      # API and Socket.IO services
+│   └── utils/         # Utility functions
+
+server/
+├── src/
+│   ├── controllers/   # Request handlers
+│   ├── models/        # Data models
+│   ├── routes/        # API routes
+│   ├── services/      # Business logic
+│   └── socket/        # Socket.IO event handlers
+```
+
+## API Documentation
+
+### REST Endpoints
+
+#### Poll Management
+- `POST /api/polls` - Create a new poll
+  ```json
+  {
+    "question": "What's your favorite color?",
+    "options": ["Red", "Blue", "Green"]
+  }
+  ```
+
+- `GET /api/polls/:sessionCode` - Get poll details
+- `DELETE /api/polls/:sessionCode` - Delete a poll
+
+#### Voting
+- `POST /api/polls/:sessionCode/vote` - Submit a vote
+  ```json
+  {
+    "optionId": "option1"
+  }
+  ```
+
+### Socket.IO Events
+
+#### Client to Server
+- `join_poll`: Join a poll session
+  ```javascript
+  socket.emit('join_poll', { sessionCode: 'ABC123' });
+  ```
+
+- `submit_vote`: Submit a vote
+  ```javascript
+  socket.emit('submit_vote', { 
+    sessionCode: 'ABC123',
+    optionId: 'option1'
+  });
+  ```
+
+#### Server to Client
+- `poll_update`: Real-time poll updates
+  ```javascript
+  socket.on('poll_update', (data) => {
+    // Update poll results
+  });
+  ```
+
+- `participant_count`: Update participant count
+  ```javascript
+  socket.on('participant_count', (count) => {
+    // Update participant count
+  });
+  ```
+
+# Running the Application
 
 ### Frontend (Client)
 1. Navigate to the client directory:
@@ -52,7 +143,8 @@ A real-time polling application with separate frontend and backend.
 
 - Frontend runs on port 3000
 - Backend runs on port 5000
-  
+- The frontend is configured to proxy API requests to the backend
+
 ## Usage
 
 1. Open http://localhost:3000 in your browser
